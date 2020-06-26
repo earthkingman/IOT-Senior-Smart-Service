@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+{% include 'header.html' %}
+<body class="animsition">
+<div class="page-wrapper">
+    <!-- MENU SIDEBAR-->
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+        <!-- HEADER DESKTOP-->
+
+        <!-- HEADER DESKTOP-->
+
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card_si_form">
+                                <div class="card-header">
+                                    <strong>노인</strong> 등록
+                                </div>
+                                <div class="card-body card-block">
+                                    <form action="/silverdata" method="post" enctype="multipart/form-data"
+                                          class="form-horizontal">
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">이름</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="s_name" name="s_name" placeholder="이름"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">생년월일</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="date" id="s_birth" name="s_birth" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">성별</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check-inline form-check">
+                                                    <label for="inline-radio1" class="form-check-label ">
+                                                        <input type="radio" id="inline-radio1" name="inline-radios"
+                                                               value="male" class="form-check-input">남성&nbsp
+                                                    </label>
+                                                    <label for="inline-radio2" class="form-check-label ">
+                                                        <input type="radio" id="inline-radio2" name="inline-radios"
+                                                               value="female" class="form-check-input">여성
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="s_phone" class=" form-control-label">전화번호</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="tel" id="s_phone" name="s_phone"
+                                                       pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="000-0000-0000"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">주소</label>
+                                            </div>
+                                            <div class="col col-sm-3">
+                                                <input type="text" id="postcode" name="postcode" placeholder="우편번호"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="input-group-btn">
+                                                <input type="button" onclick="sample6_execDaumPostcode()"
+                                                       class="btn btn-outline-dark" value="우편번호 찾기">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label"></label>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <input type="text" id="address" name="address" placeholder="주소"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label"></label>
+                                            </div>
+                                            <div class="col col-md-3">
+                                                <input type="text" id="detailAddress" name="detailAddress"
+                                                       placeholder="상세주소" class="form-control">
+                                            </div>
+                                            <div class="col col-md-3">
+                                                <input type="text" id="extraAddress" name="extraAddress"
+                                                       placeholder="참고항목" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="file" class=" form-control-label">사진</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="file" id="file" name="file" multiple=""
+                                                       class="form-control-file">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="s_info" class=" form-control-label">특이사항</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <textarea name="s_info" id="s_info" rows="9"
+                                                          placeholder="관련 특이사항을 입력하세요. (예) 당뇨가 있음."
+                                                          class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">보호자 등록</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <div class="input-group">
+                                                    <button type="button" class="btn btn-outline-dark"
+                                                            data-toggle="modal"
+                                                            data-target="#largeModal">보호자 검색
+                                                    </button>
+                                                    <input type="text" id="input1-group2" name="input1-group2"
+                                                           placeholder="전화번호를 통해 보호자를 검색하세요." class="form-control">
+
+                                                </div>
+                                                <br>
+                                                <button type="button" class="btn btn-outline-primary"
+                                                        data-toggle="modal" data-target="#mediumModal">
+                                                    <i class="fa fa-plus"></i>&nbsp; 보호자 추가
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" class="btn btn-outline-primary" value="제출">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--보호자 검색 모달-->
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="largeModalLabel">보호자 목록</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <div class="col-lg-9">
+                        <div class="table-responsive table--no-card m-b-30">
+                            <table class="table table-borderless table-striped table-earning">
+                                <thead>
+                                <tr>
+                                    <th>이름</th>
+                                    <th>전화번호</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>@@@</td>
+                                    <td>000-0000-0000</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--보호자 추가 모달-->
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediumModalLabel">보호자 정보</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">이름</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="g_name" name="g_name" placeholder="이름"
+                                   class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">생년월일</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="date" id="g_birth" name="g_birth" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">성별</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check-inline form-check">
+                                <label for="inline-radio3" class="form-check-label ">
+                                    <input type="radio" id="inline-radio3" name="g_sex"
+                                           value="male" class="form-check-input">남성&nbsp
+                                </label>
+                                <label for="inline-radio4" class="form-check-label ">
+                                    <input type="radio" id="inline-radio4" name="g_sex"
+                                           value="female" class="form-check-input">여성
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">전화번호</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="te;" id="g_tel" name="g_tel"
+                                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="000-0000-0000"
+                                   class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("extraAddress").value = extraAddr;
+
+                } else {
+                    document.getElementById("extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddress").focus();
+            }
+        }).open();
+    }
+
+
+
+
+
+</script>
+</body>
+
+</html>
+<!— end document—>

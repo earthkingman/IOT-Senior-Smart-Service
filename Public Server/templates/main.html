@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+</head>
+
+<body class="animsition">
+    {% include 'header.html' %}
+    <!-- PAGE CONTENT-->
+    <div class="page-content--bgf7">
+        <!-- WELCOME-->
+        <section class="welcome p-t-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                        <h1 class="title-4">복지사
+                            <span> (박지율)</span>
+                        </h1>
+                        <hr class="line-seprate">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END WELCOME-->
+
+        <!-- STATISTIC-->
+        <section class="statistic statistic2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3.offset-md-3">
+                        <div class="statistic__item statistic__item--green">
+                            <h2 class="number">총 노인</h2>
+                            <span class="desc">members online</span>
+
+                            <h2 class="number"> {{ show|length }}</h2>
+                            <div class="icon">
+                                <i class="zmdi zmdi-account-o"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3.offset-md-3">
+                        <div class="statistic__item statistic__item--red">
+                            <h2 class="number">위험 노인</h2>
+                            <!-- 진자값 들어가야함 -->
+                            <span class="desc">total earnings</span>
+                            <h2 id="dangernum" class="number"> </h2>
+                            <div class="icon">
+                                <i class="zmdi zmdi-account-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END STATISTIC-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+
+
+
+                        {% for i in show %}
+
+                        <div class="col-md-4">
+                            <div class="card">
+
+                                <!-- 하이퍼링크로 주소 보내면서 get방식으로 s_id값을 보냄  s_id는 노인 id -->
+                                <a href="{{ url_for('detail',va= i['s_id']) }}">
+
+                                    <div class="card-header">
+                                        <strong class="card-title mb-3">노인 정보</strong>
+                                        <strong id="{{i['s_id']}}">{{i['s_id']}} </strong>
+
+                                        <!-- 여기다가 이프문 넣어주면댄다 -->
+
+
+
+
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mx-auto d-block">
+                                            <img class="rounded-circle mx-auto d-block"
+                                                src="/static/images/icon/avatar-01.jpg" alt="Card image cap">
+                                            <div class="location text-sm-center">
+                                                <h5 class="mt-2 mb-3"> {{i['s_name']}}</h5>
+                                            </div>
+                                            <div class="location text-sm-center">
+                                                <i class="fa fa-map-marker"></i> {{i['s_address']}}
+                                                <span class="bot-line"></span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h5 class="mt-2 mb-3 text-sm-center">Tel : {{i['s_tel']}}</h5>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+                <!-- END DATA TABLE-->
+
+                <!-- COPYRIGHT-->
+                <section class="p-t-60 p-b-20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Nojongbok. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- END COPYRIGHT-->
+            </div>
+
+        </div>
+</body>
+
+
+<script>
+    fire();
+  
+    timer = setInterval( function () {    fire(); }, 5000); //초당 화재 경보 체크
+var n=0
+    //화재 출력
+    function fire() {
+        $.ajax({
+            method: "POST",
+            url: "/fire",
+        })
+            .done(function (msg) {            
+                console.log(msg);
+               
+                $("#dangernum").html(msg.length);
+
+                for (var i=0; i < msg.length; i++) {
+                    console.log(String(msg[i].s_id))        
+                    $("#" + String(msg[i].s_id)).html("<p style='color: red; font-size: 20px;'> 화재 의심 </p>");
+                }
+            });
+    }
+
+
+
+
+
+
+
+
+</script>
+
+
+</html>
+<!-- end document-->

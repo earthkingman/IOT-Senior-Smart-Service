@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>test</title>
+
+
+
+STT_TTS 테스트
+
+</head>
+
+<body>
+
+    
+
+    <div>
+
+        <input type="text" id=message>
+        <input type="button" onclick="postmessage();" value="메세지를 보내주세요">
+
+
+
+    </div>
+
+
+
+    <script>
+
+
+
+
+function postmessage(){ //공공서버로 보냄 공공DB에 저장해야함
+    text = $('#message').val();
+        $.ajax({
+            method: "POST",
+            url: "/test",
+            data: { messsage: text }
+        })
+            .done(function (msg) {
+                alert("Data Saved: " + msg);
+             
+                
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

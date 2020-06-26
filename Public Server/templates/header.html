@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>노인 통합 관리</title>
+
+    <!-- Fontfaces CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/font-face.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css' ) }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/font-awesome-5/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}">
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.css') }}">
+
+    <!-- Vendor CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/animsition/animsition.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/wow/animate.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/slick/slick.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+
+    <!-- Main CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/theme.css') }}">
+
+</head>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<body class="animsition">
+    
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop3 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="{{ url_for('index') }}">
+                            <img src="/static/images/icon/hi.png" alt="CoolAdmin" />
+                        </a>
+                    </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li class="has-sub">
+                                <a href="{{ url_for('form') }}">
+                                    <i class="zmdi zmdi-settings"></i>노인 등록
+                                    <span class="bot-line"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('danger') }}">
+                                    <i class="zmdi zmdi-info"></i>
+                                    <span class="bot-line"></span>위험 노인</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('calendar') }}">
+                                    <i class="zmdi zmdi-account-calendar"></i>
+                                    <span class="bot-line"></span>캘린더</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header__tool">
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">
+                                <div class="image">
+                                    <img src="/static/images/icon/avatar-01.jpg" alt="John Doe" />
+                                </div>
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#">Volunteer</a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info clearfix">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="/static/images/icon/avatar-01.jpg" alt="John Doe" />
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="name">
+                                                <a href="#">john doe</a>
+                                            </h5>
+                                            <span class="email">johndoe@example.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-account"></i>Account</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-settings"></i>Setting</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER DESKTOP-->      
+    <script src="{{ url_for('static',filename='vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{{ url_for('static',filename='vendor/bootstrap-4.1/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+    <!-- Vendor JS       -->
+    <script src="{{ url_for('static',filename='vendor/slick/slick.min.js') }}">
+    </script>
+    <script src="{{ url_for('static',filename='vendor/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/animsition/animsition.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+    </script>
+    <script src="{{ url_for('static',filename='vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/counter-up/jquery.counterup.min.js') }}">
+    </script>
+    <script src="{{ url_for('static',filename='vendor/circle-progress/circle-progress.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/circle-progress/circle-progress.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/chartjs/Chart.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/select2/select2.min.js') }}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

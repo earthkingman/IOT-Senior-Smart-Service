@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Title Page-->
+    <title>노인 상세 페이지</title>
+
+    <!-- Fontfaces CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/font-face.css') }}">
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='vendor/font-awesome-5/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}">
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.css') }}">
+
+    <!-- Vendor CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/animsition/animsition.min.css') }}">
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/wow/animate.css') }}">
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/slick/slick.css') }}">
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+    <link rel="stylesheet" media="all"
+        href="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+
+    <!-- Main CSS-->
+    <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/theme.css') }}">
+
+</head>
+{% include 'header.html' %}
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <section class="statistic-chart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="title-5 m-b-35">Detail View</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- 노인 프로필-->
+                    <div class="col-md-6 col-lg-4">
+
+                        <section class="card">
+                            <div class="card-header user-header alt bg-dark">
+                                <div class="media">
+                                    <a href="#">
+                                        <img class="align-self-center rounded-circle mr-3"
+                                            style="width:85px; height:85px;" alt=""
+                                            src="{{ url_for('static', filename='images/icon/avatar-01.jpg') }}">
+                                    </a>
+                                    <div class="media-body">
+                                        <h2 class="text-light display-6" id="s_name"></h2>
+                                        <p id="s_phone"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fa fa-calendar-o"></i> <strong class="card-title">생년월일</strong>
+                                    <p class="card-text" id="s_birth">
+                                    </p>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fa fa-home"></i> <strong class="card-title">주소</strong>
+                                    <p class="card-text" id="s_address">
+
+
+                                    </p>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fa fa-plus"></i> <strong class="card-title">특징</strong>
+                                    <p class="card-text" id="s_info">
+                                    </p>
+                                </li>
+                            </ul>
+
+                        </section>
+
+                        <!-- END CHART-->
+                    </div>
+                    <!--심박수 차트 -->
+                    <div class="col-md-6 col-lg-8">
+                        <div class="recent-report2">
+                            <h3 class="title-3"><i class="fa fa-heart"></i> 심박수</h3>
+                            <div class="chart-info">
+                                <div class="chart-info__left">
+                                    <div class="chart-note">
+                                        <span class="dot dot--red"></span>
+                                        <span>현재</span>
+                                    </div>
+                                </div>
+                                <div class="chart-info-right">
+                                    <!-- <div class="rs-select2--dark rs-select2--md m-r-10">
+                                        <select class="js-select2" name="property">
+                                            <option selected="selected">All Properties</option>
+                                            <option value="">Products</option>
+                                            <option value="">Services</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div> -->
+                                    <!-- <div class="rs-select2--dark rs-select2--sm">
+                                        <select class="js-select2 au-select-dark" name="time">
+                                            <option selected="selected">All Time</option>
+                                            <option value="">By Month</option>
+                                            <option value="">By Day</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="recent-report__chart">
+                                <canvas id="sales-chart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- 그 외 센서 데이터(온습도, 침입 감지 유무 등...) -->
+                    <div class="col-md-6 col-lg-8">
+                        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40 au-card--border">
+                            <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                <div class="bg-overlay bg-overlay--blue"></div>
+                                <h3>
+                                    <i class="zmdi zmdi-account-calendar"></i>Data Detail</h3>
+                            </div>
+                            <div class="au-task js-list-load au-task--border">
+                                <div class="au-task-list js-scrollbar3">
+                                    <div class="au-task__item au-task__item--danger">
+                                        <div class="au-task__item-inner">
+                                            <h5 class="task">
+                                                <i class="fa fa-warning (alias)"></i>&nbsp&nbsp최근 위험</a>
+                                            </h5>
+                                            <span class="time">00년 00월 00일 침입감지</span>
+                                        </div>
+                                    </div>
+                                    <div class="au-task__item au-task__item--warning">
+                                        <div class="au-task__item-inner">
+                                            <h5 class="task">
+                                                <i class="fa fa-bar-chart-o"></i>&nbsp&nbsp집안 온도</a>
+                                            </h5>
+                                            <span id="temp" class="time"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="au-task__item au-task__item--primary">
+                                        <div class="au-task__item-inner">
+                                            <h5 class="task">
+                                                <i class="fa fa-cloud"></i>&nbsp&nbsp집안 습도</a>
+                                            </h5>
+                                            <span id="humi" class="time"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="au-task__item au-task__item--success">
+                                        <div class="au-task__item-inner">
+                                            <h5 class="task">
+                                                <i class="fa fa-user"></i>&nbsp&nbsp보호자 전화번호</a>
+                                            </h5>
+                                            <span class="time">000-0000-0000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END CHART-->
+                    </div>
+                    <!-- 채팅 -->
+                    <div class="col-md-6 col-lg-4">
+                        <!-- -->
+                        <div id="au-card au-card--no-shadow au-card--no-pad m-b-40 au-card--border"
+                            class="au-card au-card--no-shadow au-card--no-pad m-b-40 au-card--border">
+                            <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
+                                <div class="bg-overlay bg-overlay--blue"></div>
+                                <h3>
+                                    <i class="zmdi zmdi-comment-text"></i>Chat</h3>
+                                <button class="au-btn-plus">
+                                    <i class="zmdi zmdi-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="au-inbox-wrap">
+                                <div class="au-chat au-chat--border">
+                                    <div class="au-chat__title">
+                                        <div class="au-chat-info">
+                                            <div class="avatar-wrap online">
+                                                <div class="avatar avatar--small">
+                                                    <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                </div>
+                                            </div>
+                                            <span class="nick">
+                                                <a href="#">박지율</a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div id="test">
+                                        <div id="au-chat__content au-chat__content2 js-scrollbar5 "
+                                            class="au-chat__content au-chat__content2 js-scrollbar5">
+
+
+
+                                            <div id="recei-mess-wrap" class="recei-mess-wrap">
+                                                <!-- <span class="mess-time">12 Min ago</span> -->
+                                                <div class="recei-mess__inner">
+
+                                                    <div id="recei-messs-list" class="recei-messs-list">
+
+                                                        <!-- <div id="recei-mess" class="recei-mess"> 안녕</div> -->
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div id="send-mess-wrap" class="send-mess-wrap">
+                                                <!-- <span class="mess-time">30 Sec ago</span> -->
+                                                <div class="send-mess__inner">
+
+                                                    <div class="send-mess-list">
+
+                                                        <!-- <div class="send-mess">ddd</div>  -->
+                                                        <!-- <div id="send-mess" class="send-mess"> 반가워 </div> -->
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="au-chat-textfield">
+                                        <form class="au-form-icon">
+                                            <input id=message class="au-input au-input--full au-input--h65" type="text"
+                                                placeholder="Type a message">
+
+
+
+                                            <!-- 메세지 보내기 버튼 -->
+
+                                            <input type="button" onclick="test();" value="메세지를 보내주세요">
+                                            <!-- <button onclick="test();">
+                                            버튼
+                                        </button> -->
+
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END TOP CAMPAIGN-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END TASK PROGRESS-->
+    </div>
+
+</body>
+
+
+<script>
+
+
+    function searchParam(key) {
+        return new URLSearchParams(location.search).get(key);
+    };
+    var s_id = searchParam('va'); //쿼리스트링 노인 id값 구분
+    console.log("노인 ID :" + s_id)
+
+    var ctx = document.getElementById("sales-chart"); //그래프 id
+    var list = document.querySelector("#recei-mess-wrap"); //채팅 구분 id
+
+
+    //화재경보 없애기  
+    function fire_remove() {
+        $.ajax({
+            method: "POST",
+            url: "/fireremove",
+            data: { s_id: s_id }
+        })
+            .done(function (msg) {
+                console.log("화재경보 확인 성공");
+                console.log(msg)
+
+            });
+
+
+    }
+
+
+    //노인정보
+    function info() {
+        $.ajax({
+            method: "POST",
+            url: "/info",
+            data: { s_id: s_id }
+        })
+            .done(function (msg) {
+                console.log("노인정보 성공");
+                console.log(msg);
+                $("#s_name").append(msg[0].s_name);
+                $("#s_address").append(msg[0].s_address);
+                $("#s_birth").append(msg[0].s_yymmdd);
+                $("#s_info").append(msg[0].s_cautions);
+
+            });
+        dht()
+    }
+    // 온습도 정보  
+    function dht() {
+        $.ajax({
+            method: "POST",
+            url: "/dht",
+            data: { s_id: s_id }
+        })
+            .done(function (msg) {
+                console.log("온습도 성공");
+                var a = msg.length - 1
+                console.log(msg);
+                $("#temp").append(msg[a].dht_temp);
+                $("#humi").append(msg[a].dht_humi);
+
+            });
+
+        chat();
+    }
+
+    var heart = ['', '', '', '', '', '', '', '', '', '', '', '', '', '']
+    //심박수 그래프 데이터
+    $.ajax({
+        method: "POST",
+        url: "/graph",
+        data: { s_id: s_id }
+    })
+        .done(function (msg) {
+            console.log("그래프그리기 성공");
+            console.log(msg);
+            console.log(heart)
+            for (var i = 0; i < msg.length; i++) {
+
+                heart[i] = (Number(msg[i].h_rate))
+            }
+
+            if (ctx) {
+                ctx.height = 150;
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["0", "02", "04", "06", "08", "10", "12", "14", "16", "18", "20", "22"],
+                        type: 'line',
+                        defaultFontFamily: 'Poppins',
+                        datasets: [{
+                            label: "최고",
+                            data: [heart[0], heart[1], heart[2], heart[3], heart[4], heart[5], heart[6], heart[7], heart[8], heart[9], heart[10]],
+                            backgroundColor: 'transparent',
+                            borderColor: 'rgba(220,53,69,0.75)',
+                            borderWidth: 3,
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            pointBorderColor: 'transparent',
+                            pointBackgroundColor: 'rgba(220,53,69,0.75)',
+                        }
+                            // , {
+                            //     label: "최저",
+                            //     data: [0, 50, 60, 30, 36, 30, 47, 49, 30, 35, 30, 50],
+                            //     backgroundColor: 'transparent',
+                            //     borderColor: 'rgba(40,167,69,0.75)',
+                            //     borderWidth: 3,
+                            //     pointStyle: 'circle',
+                            //     pointRadius: 5,
+                            //     pointBorderColor: 'transparent',
+                            //     pointBackgroundColor: 'rgba(40,167,69,0.75)',
+                            // }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        tooltips: {
+                            mode: 'index',
+                            titleFontSize: 12,
+                            titleFontColor: '#000',
+                            bodyFontColor: '#000',
+                            backgroundColor: '#fff',
+                            titleFontFamily: 'Poppins',
+                            bodyFontFamily: 'Poppins',
+                            cornerRadius: 3,
+                            intersect: false,
+                        },
+                        legend: {
+                            display: false,
+                            labels: {
+                                usePointStyle: true,
+                                fontFamily: 'Poppins',
+                            },
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false
+                                },
+                                scaleLabel: {
+                                    display: false,
+                                    labelString: 'Month'
+                                },
+                                ticks: {
+                                    fontFamily: "Poppins"
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Value',
+                                    fontFamily: "Poppins"
+
+                                },
+                                ticks: {
+                                    fontFamily: "Poppins"
+                                }
+                            }]
+                        },
+                        title: {
+                            display: false,
+                            text: 'Normal Legend'
+                        }
+                    }
+                });
+            }
+
+            info()
+
+        });
+
+
+
+
+
+
+    var list = document.querySelector("#recei-mess-wrap");
+    function chat() {
+        $.ajax({
+            method: "GET",
+            url: "/ajax_chat",
+            data: { s_id: s_id }
+        })
+            .done(function (msg) {
+                console.log(msg);
+                console.log("시작하자말자 채팅 싹다 갱신해주는거 성공")
+                // console.log(msg[0].m_type)
+
+                for (var i = 0; i < msg.length; i++) {
+                    if (msg[i].m_type == 1) {
+                        list.innerHTML += '<span class="mess-time">' + msg[i].now_time + '</span>'
+                        list.innerHTML += '<div class="send-mess__inner">'
+                        list.innerHTML += '<div class="send-mess-list">'
+                        list.innerHTML += '<div id="send-mess" class="send-mess" style="margin-left: 85px;">' + msg[i].message + ' </div>  </div>  </div>'
+
+                    }
+                    if (msg[i].m_type == 2) {
+
+                        list.innerHTML += '<span class="mess-time">' + msg[i].now_time + '</span>'
+                        list.innerHTML += '<div class="recei-mess__inner">'
+                        list.innerHTML += '<div class="recei-messs-list">'
+                        list.innerHTML += '<div id="recei-mess" class="recei-mess" >' + msg[i].message + ' </div>  </div>  </div>'
+
+                    }
+
+                }
+
+
+            });
+
+        fire_remove()
+    }
+
+
+    //채팅화면 복지사가 보낸거 갱신
+    function test() {
+        text = $('#message').val();
+        $.ajax({
+            method: "POST",
+            url: "/ajax_chat",
+            data: {
+                message: text,
+                s_id: s_id
+            }
+        })
+            .done(function (msg) {
+                console.log(msg)
+                console.log("복지사 채팅 화면 갱신 성공")
+                var a = msg.length - 1
+                if (msg[a].m_type == 1) {
+                    list.innerHTML += '<span class="mess-time">' + msg[a].now_time + '</span>'
+                    list.innerHTML += '<div class="send-mess__inner">'
+                    list.innerHTML += '<div class="send-mess-list">'
+                    list.innerHTML += '<div id="send-mess" class="send-mess" style="margin-left: 600px;">' + msg[a].message + ' </div>  </div>  </div>'
+                }
+                if (msg[a].m_type == 2) {
+
+                    list.innerHTML += '<span class="mess-time">' + msg[a].now_time + '</span>'
+                    list.innerHTML += '<div class="recei-mess__inner">'
+                    list.innerHTML += '<div class="recei-messs-list">'
+                    list.innerHTML += '<div id="recei-mess" class="recei-mess" >' + msg[a].message + ' </div>  </div>  </div>'
+
+                }
+
+            });
+
+        speech();
+
+
+    }
+
+    // 음성데이터 보내기
+    function speech() {
+        text = $('#message').val();
+        $.ajax({
+            method: "POST",
+            url: "/speech",
+            data: {
+                message: text,
+                s_id: s_id
+            }
+
+        })
+            .done(function (msg) {
+                console.log("복지사 메세지 공공서버로 전달 성공");
+                console.log(msg);
+
+
+            });
+
+        test2()  //노인이 채팅보낸거
+    }
+
+
+    function test2() {
+        $.ajax({
+            method: "POST",
+            url: "/ajax_chat2",
+            data: {
+                s_id: s_id
+            }
+        })
+            .done(function (msg) {
+                console.log(msg)
+
+                console.log("제발 되라 되라")
+                var a = msg.length - 1
+                if (msg[a].m_type == 1) {
+                    list.innerHTML += '<span class="mess-time">' + msg[a].now_time + '</span>'
+                    list.innerHTML += '<div class="send-mess__inner">'
+                    list.innerHTML += '<div class="send-mess-list">'
+                    list.innerHTML += '<div id="send-mess" class="send-mess" style="margin-left: 600px;">' + msg[a].message + ' </div>  </div>  </div>'
+                }
+            });
+
+
+
+
+    }
+
+
+</script>
+
+<script src="{{ url_for('static',filename='vendor/jquery-3.2.1.min.js') }}"></script>
+<!-- Bootstrap JS-->
+<script src="{{ url_for('static',filename='vendor/bootstrap-4.1/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+<!-- Vendor JS       -->
+<script src="{{ url_for('static',filename='vendor/slick/slick.min.js') }}">
+</script>
+<script src="{{ url_for('static',filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/animsition/animsition.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+</script>
+<script src="{{ url_for('static',filename='vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/counter-up/jquery.counterup.min.js') }}">
+</script>
+<script src="{{ url_for('static',filename='vendor/circle-progress/circle-progress.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/chartjs/Chart.bundle.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/select2/select2.min.js') }}">
+</script>
+
+</html>
+<!-- end document-->
